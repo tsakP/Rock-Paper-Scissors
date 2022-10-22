@@ -18,26 +18,20 @@ const displayResult = (roundResult, scoreResult) => {
 }
 
 const playRound = function(playerSelection) {
-    
     computerSelection = gameOptions[Math.floor(Math.random() * gameOptions.length)];
-    
-    // Round Logic
     if (playerSelection == computerSelection) roundResult = `Round ${round} is a draw!`;
-    
     if (
         playerSelection == "rock" && computerSelection == "paper" ||
         playerSelection == "scissors" && computerSelection == "rock" ||
         playerSelection == "paper" && computerSelection == "scissors"
     ) {
         computerScore++;
-
         if (computerScore === 5) {
             roundResult = "🔴 Computer wins the game! 😢";
         } else {
             roundResult = `Computer wins round ${round}! (${computerSelection} beats ${playerSelection})`;
         }
     }
-
     if (
         playerSelection == "paper" && computerSelection == "rock" ||
         playerSelection == "rock" && computerSelection == "scissors" ||
@@ -50,22 +44,17 @@ const playRound = function(playerSelection) {
             roundResult = `Player wins round ${round}! (${playerSelection} beats ${computerSelection})`;
         }
     } 
-    
     scoreResult = `Player: ${playerScore} Computer: ${computerScore}`;
-
     displayResult(roundResult, scoreResult);
-
     round++;
 }
 
 buttons.forEach((button) => {
-
     button.addEventListener('click', function(e) {
         playerSelection = button.id;
         playerChoiceText.textContent = `You chose ${playerSelection}!`;
         playRound(playerSelection);
     })
-
 })
 
 
